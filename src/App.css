@@ -1,4 +1,37 @@
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 .wrapper {
-  background: linear-gradient(#5b8ae9, #d9c6e0);
+  background: #f5f7f4;
   min-height: 100vh;
+}
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.2rem 1.5rem;
+
+  background: #a9d18e;
+}
+
+.add-habit-btn {
+  border-radius: 16px;
+  color: rgba(3, 52, 35, 0.969);
+  background: rgba(214, 255, 194, 0.682);
+  font-weight: 600;
+  transition: 0.1s ease-in-out;
+}
+.add-habit-btn:hover {
+  transform: translateY(-2px);
+  background: rgb(207, 230, 190);
+}
+
+.habit-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
 }
