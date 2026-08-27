@@ -32,10 +32,20 @@ export const HabitList = ({
                   </td>
                   <td>{item.name}</td>
                   <td>
-                    <button className="handleArchiveButton">Archive</button>
+                    <button
+                      className="handleArchiveButton"
+                      onClick={() => handleArchiveToggle(item._id)}
+                    >
+                      Archive
+                    </button>
                   </td>
                   <td>
-                    <button className="handleArchiveButton">Delete</button>
+                    <button
+                      className="handleArchiveButton"
+                      onClick={() => handleDelete(item._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
                 <tr></tr>
@@ -48,7 +58,7 @@ export const HabitList = ({
       {/* archived habits */}
       <div className="active-table">
         <div className="table-header">
-          <h2>Active Habits</h2>
+          <h2>Archive Habits</h2>
 
           <hr />
         </div>
@@ -68,10 +78,20 @@ export const HabitList = ({
                   </td>
                   <td>{item.name}</td>
                   <td>
-                    <button className="handleArchiveButton">Archive</button>
+                    <button
+                      className="handleArchiveButton"
+                      onClick={() => handleArchiveToggle(item._id)}
+                    >
+                      Archive
+                    </button>
                   </td>
                   <td>
-                    <button className="handleArchiveButton">Delete</button>
+                    <button
+                      className="handleDeleteButton"
+                      onClick={() => handleDelete(item._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
                 <tr></tr>
