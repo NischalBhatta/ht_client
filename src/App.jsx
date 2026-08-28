@@ -1,5 +1,6 @@
 import "./App.css";
 import HabitList from "./components/HabitList.jsx";
+import HabitForm from "./components/HabitForm.jsx";
 // import Streak from "./components/Streak.jsx";
 
 import React, { useState } from "react";
@@ -9,31 +10,33 @@ function App() {
     {
       _id: "1",
       name: "Drink 2L of water",
-      type: "active",
+      isArchived: false,
       isCompleted: true,
     },
     {
       _id: "2",
       name: "Read 20 minutes",
-      type: "active",
+      isArchived: false,
       isCompleted: false,
     },
     {
       _id: "3",
       name: "Drink 2L of water",
-      type: "active",
+      isArchived: true,
       isCompleted: true,
     },
     {
       _id: "4",
       name: "Read 20 minutes",
-      type: "active",
+      isArchived: true,
       isCompleted: false,
     },
   ]);
 
   const activeHabits = habitList.filter((habit) => habit.isCompleted);
   const archiveHabits = habitList.filter((habit) => !habit.isCompleted);
+
+  const [showForm, setShowForm] = useState(false);
 
   const handleArchiveToggle = (id) => {
     setHabitList((currentList) =>
@@ -55,6 +58,19 @@ function App() {
       );
     }
   };
+
+  const addHabit = (habitName) => {
+    const newHabit = {
+      _id: Date.now().toString(),
+      name: habitName,
+      isArchived: false,
+      completed: false,
+    };
+
+    setHabitList([...habitList, newHabit]);
+
+    setShowForm(false);
+  };
   return (
     <>
       <div className="wrapper">
@@ -65,7 +81,12 @@ function App() {
               <h2>Habit Tracker</h2>
             </div>
             <div className="add-habit">
-              <button className="add-habit-btn">ADD HABIT</button>
+              <button
+                className="add-habit-btn"
+                onClick={() => setShowForm(true)}
+              >
+                ADD HABIT
+              </button>
             </div>
           </header>
 
@@ -75,6 +96,14 @@ function App() {
             archiveHabits={archiveHabits}
             handleArchiveToggle={handleArchiveToggle}
           />
+
+          {/* Habit form */}
+          {showForm && (
+            <HabitForm
+              addHabit={addHabit}
+              closeForm={() => setShowForm(false)}
+            />
+          )}
 
           {/* Habit Streak  */}
           {/* <Streak /> */}

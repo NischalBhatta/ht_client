@@ -28,6 +28,7 @@ export const HabitList = ({
                       className="handleToggleButton"
                       value={item._id}
                       id=""
+                      onClick={() => handleToggleComplete(item._id)}
                     ></button>
                   </td>
                   <td>{item.name}</td>
@@ -68,14 +69,6 @@ export const HabitList = ({
               <tbody>
                 <tr key={item._id}>
                   <td>{i + 1}</td>
-                  <td>
-                    <button
-                      type="checkbox"
-                      className="handleToggleButton"
-                      value={item._id}
-                      id=""
-                    ></button>
-                  </td>
                   <td>{item.name}</td>
                   <td>
                     <button
