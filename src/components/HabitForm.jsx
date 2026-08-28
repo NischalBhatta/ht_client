@@ -3,6 +3,8 @@ import { useState } from "react";
 const HabitForm = ({ addHabit, closeForm }) => {
   const [habitName, setHabitName] = useState("");
 
+  const [color, setColor] = useState("#2e6933");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -10,7 +12,7 @@ const HabitForm = ({ addHabit, closeForm }) => {
       return;
     }
 
-    addHabit(habitName);
+    addHabit(habitName, color);
 
     setHabitName("");
   };

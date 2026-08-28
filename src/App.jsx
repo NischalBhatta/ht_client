@@ -10,31 +10,35 @@ function App() {
     {
       _id: "1",
       name: "Drink 2L of water",
+      colour: "#718b73",
       isArchived: false,
       isCompleted: true,
     },
     {
       _id: "2",
       name: "Read 20 minutes",
+      colour: "#6b8cae",
       isArchived: false,
       isCompleted: false,
     },
     {
       _id: "3",
       name: "Drink 2L of water",
+      colour: "#718b73",
       isArchived: true,
       isCompleted: true,
     },
     {
       _id: "4",
       name: "Read 20 minutes",
+      colour: "#6b8cae",
       isArchived: true,
       isCompleted: false,
     },
   ]);
 
-  const activeHabits = habitList.filter((habit) => habit.isCompleted);
-  const archiveHabits = habitList.filter((habit) => !habit.isCompleted);
+  const activeHabits = habitList.filter((habit) => !habit.isArchived);
+  const archivedHabits = habitList.filter((habit) => habit.isArchived);
 
   const [showForm, setShowForm] = useState(false);
 
@@ -71,6 +75,16 @@ function App() {
 
     setShowForm(false);
   };
+
+  const handleToggleComplete = (id) => {
+    setHabitList((currentList) =>
+      currentList.map((habit) =>
+        habit._id === id
+          ? { ...habit, isCompleted: !habit.isCompleted }
+          : habit,
+      ),
+    );
+  };
   return (
     <>
       <div className="wrapper">
@@ -93,8 +107,9 @@ function App() {
           {/* Habit List */}
           <HabitList
             activeHabits={activeHabits}
-            archiveHabits={archiveHabits}
+            archivedHabits={archivedHabits}
             handleArchiveToggle={handleArchiveToggle}
+            handleToggleComplete={handleToggleComplete}
           />
 
           {/* Habit form */}

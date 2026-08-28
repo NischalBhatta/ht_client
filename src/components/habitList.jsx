@@ -23,15 +23,36 @@ export const HabitList = ({
                 <tr key={item._id}>
                   <td>{i + 1}</td>
                   <td>
-                    <button
+                    <input
                       type="checkbox"
                       className="handleToggleButton"
                       value={item._id}
                       id=""
                       onClick={() => handleToggleComplete(item._id)}
-                    ></button>
+                    ></input>
                   </td>
-                  <td>{item.name}</td>
+                  <td>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "10px",
+                        height: "10px",
+                        borderRadius: "50%",
+                        backgroundColor: item.colour || "#718b73",
+                        marginRight: "8px",
+                      }}
+                    />
+                    <span
+                      style={{
+                        textDecoration: item.isCompleted
+                          ? "line-through"
+                          : "none",
+                        color: item.isCompleted ? "#8a968d" : "#455248",
+                      }}
+                    >
+                      {item.name}
+                    </span>
+                  </td>
                   <td>
                     <button
                       className="handleArchiveButton"
@@ -65,7 +86,7 @@ export const HabitList = ({
         </div>
         <div>
           <table className="active-list">
-            {activeHabits.map((item, i) => (
+            {archivedHabits.map((item, i) => (
               <tbody>
                 <tr key={item._id}>
                   <td>{i + 1}</td>
@@ -75,7 +96,7 @@ export const HabitList = ({
                       className="handleArchiveButton"
                       onClick={() => handleArchiveToggle(item._id)}
                     >
-                      Archive
+                      UnArchive
                     </button>
                   </td>
                   <td>
