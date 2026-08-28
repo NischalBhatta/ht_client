@@ -207,6 +207,15 @@
   box-shadow: 0 4px 15px rgba(40, 70, 50, 0.12);
 }
 
+.habitModal input[type="color"] {
+  width: 60px;
+  height: 36px;
+  padding: 2px;
+  border-radius: 6px;
+  border: 1px solid #d5ded5;
+  background: white;
+}
+
 .modalHeader {
   display: flex;
   justify-content: space-between;

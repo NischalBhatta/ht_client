@@ -38,7 +38,7 @@ export const HabitList = ({
                         width: "10px",
                         height: "10px",
                         borderRadius: "50%",
-                        backgroundColor: item.colour || "#718b73",
+                        backgroundColor: item.color || "#718b73",
                         marginRight: "8px",
                       }}
                     />

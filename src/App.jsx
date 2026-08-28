@@ -63,10 +63,13 @@ function App() {
     }
   };
 
-  const addHabit = (habitName) => {
+  const addHabit = (habitName, color) => {
+    console.log("habitName:", habitName);
+    console.log("color:", color);
     const newHabit = {
       _id: Date.now().toString(),
       name: habitName,
+      color: color,
       isArchived: false,
       completed: false,
     };

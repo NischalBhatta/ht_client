@@ -3,7 +3,7 @@ import { useState } from "react";
 const HabitForm = ({ addHabit, closeForm }) => {
   const [habitName, setHabitName] = useState("");
 
-  const [color, setColor] = useState("#2e6933");
+  const [color, setColor] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +36,13 @@ const HabitForm = ({ addHabit, closeForm }) => {
             placeholder="Example: Read 20 minutes"
             value={habitName}
             onChange={(e) => setHabitName(e.target.value)}
+          />
+
+          <label>Color</label>
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
           />
 
           <div className="modalButtons">
