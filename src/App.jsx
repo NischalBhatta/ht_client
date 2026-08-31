@@ -1,9 +1,26 @@
 import "./App.css";
 import HabitList from "./components/HabitList.jsx";
 import HabitForm from "./components/HabitForm.jsx";
-// import Streak from "./components/Streak.jsx";
+
+import HabitHistory from "./components/HabitHistory.jsx";
 
 import React, { useState } from "react";
+
+const generateDummyCollections = (createdAt) => {
+  const completions = [];
+  const start = new Date(createdAt); // 1 august 2026
+  const today = new Date(); // 28 august 2026
+  const current = new Date(start);
+
+  while (current <= today) {
+    if (Math.random() > 0.4) {
+      completions.push(current.toISOString().split("T"), [0]);
+    }
+    current.setDate(current.getDate() + 1);
+  }
+
+  return completions;
+};
 
 function App() {
   const [habitList, setHabitList] = useState([
@@ -13,6 +30,8 @@ function App() {
       colour: "#718b73",
       isArchived: false,
       isCompleted: true,
+      createdAt: "2026-08-01",
+      completions: generateDummyCollections("2026-08-01"),
     },
     {
       _id: "2",
@@ -20,20 +39,8 @@ function App() {
       colour: "#6b8cae",
       isArchived: false,
       isCompleted: false,
-    },
-    {
-      _id: "3",
-      name: "Drink 2L of water",
-      colour: "#718b73",
-      isArchived: true,
-      isCompleted: true,
-    },
-    {
-      _id: "4",
-      name: "Read 20 minutes",
-      colour: "#6b8cae",
-      isArchived: true,
-      isCompleted: false,
+      createdAt: "2026-08-01",
+      completions: generateDummyCollections("2026-08-01"),
     },
   ]);
 
@@ -123,8 +130,17 @@ function App() {
             />
           )}
 
-          {/* Habit Streak  */}
-          {/* <Streak /> */}
+          {/* Hbait History Section */}
+          <div className="heatmap-section">
+            <h5 className="habit-history">Habit History</h5>
+            <div className="row g-3">
+              {activeHabits.map((habit) => (
+                <div className="col-md-6" key={habit._id}>
+                  <HabitHistory />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>
