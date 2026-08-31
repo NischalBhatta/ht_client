@@ -5,7 +5,7 @@ export const HabitList = ({
   archivedHabits,
   handleToggleComplete,
   handleArchiveToggle,
-  handleDelete,
+  handleDeleteButton,
 }) => {
   return (
     <div className="habit-list">
@@ -63,8 +63,8 @@ export const HabitList = ({
                   </td>
                   <td>
                     <button
-                      className="handleArchiveButton"
-                      onClick={() => handleDelete(item._id)}
+                      className="handleDeleteButton"
+                      onClick={() => handleDeleteButton(item._id)}
                     >
                       Delete
                     </button>
@@ -102,7 +102,7 @@ export const HabitList = ({
                   <td>
                     <button
                       className="handleDeleteButton"
-                      onClick={() => handleDelete(item._id)}
+                      onClick={() => handleDeleteButton(item._id)}
                     >
                       Delete
                     </button>

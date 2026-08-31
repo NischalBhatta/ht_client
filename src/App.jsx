@@ -120,6 +120,7 @@ function App() {
             archivedHabits={archivedHabits}
             handleArchiveToggle={handleArchiveToggle}
             handleToggleComplete={handleToggleComplete}
+            handleDeleteButton={handleDeleteButton}
           />
 
           {/* Habit form */}
