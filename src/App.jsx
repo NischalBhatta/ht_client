@@ -14,7 +14,7 @@ const generateDummyCollections = (createdAt) => {
 
   while (current <= today) {
     if (Math.random() > 0.4) {
-      completions.push(current.toISOString().split("T"), [0]);
+      completions.push(current.toISOString().split("T")[0]);
     }
     current.setDate(current.getDate() + 1);
   }
