@@ -368,8 +368,22 @@
 
 .heatmap-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.month-labels-row {
+  display: flex;
+  margin-left: 38px;
+  margin-bottom: 4px;
+}
+
+.month-label-cell {
+  width: 23px;
+  font-size: 11px;
+  color: #8a968d;
+  font-weight: 500;
+  flex-shrink: 0;
 }
 
 /* Responsive */
@@ -403,5 +417,9 @@
   .habitModal {
     width: 92%;
     padding: 18px;
+  }
+
+  .heatmap-container {
+    grid-template-columns: 1fr;
   }
 }

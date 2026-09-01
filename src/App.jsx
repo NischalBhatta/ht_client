@@ -134,13 +134,8 @@ function App() {
           {/* Hbait History Section */}
           <div className="heatmap-section">
             <h5 className="habit-history">Habit History</h5>
-            <div className="row g-3">
-              {activeHabits.map((habit) => (
-                <div className="col-md-6" key={habit._id}>
-                  <HabitHistory />
-                </div>
-              ))}
-            </div>
+
+            <HabitHistory activeHabits={activeHabits} />
           </div>
         </div>
       </div>
