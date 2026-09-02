@@ -5,7 +5,11 @@ import HabitForm from "./components/HabitForm.jsx";
 import HabitHistory from "./components/HabitHistory.jsx";
 
 import React, { useState } from "react";
-import { fetchAllHabits, postHabit } from "./helpers/habitAxiosHelper.js";
+import {
+  fetchAllHabits,
+  postHabit,
+  updateHabit,
+} from "./helpers/habitAxiosHelper.js";
 import { useRef } from "react";
 import { useEffect } from "react";
 
@@ -46,17 +50,19 @@ function App() {
     response?.status === "success" && setHabitList(response.data);
   };
 
-  const handleArchiveToggle = (id) => {
-    setHabitList((currentList) =>
-      currentList.map((habit) =>
-        habit._id === id
-          ? {
-              ...habit,
-              isArchived: !habit.isArchived,
-            }
-          : habit,
-      ),
-    );
+  const handleArchiveToggle = async (id) => {
+    const habit = habitList.find((h) => h._id === id);
+    if (!habit) return;
+
+    const newValue = !habit.isArchived;
+
+    const response = await updateHabit({ _id: id, isArchived: newValue });
+    if (response.status === "success") {
+      setHabitList((list) =>
+        list.map((h) => (h._id === id ? { ...h, isArchived: newValue } : h)),
+      );
+      getAllHabit();
+    }
   };
 
   const handleDeleteButton = (id) => {
