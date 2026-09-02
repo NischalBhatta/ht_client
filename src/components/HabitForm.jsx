@@ -1,20 +1,21 @@
 import { useState } from "react";
 
 const HabitForm = ({ addHabit, closeForm }) => {
-  const [habitName, setHabitName] = useState("");
+  const [form, setForm] = useState({});
 
-  const [color, setColor] = useState("");
-
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(form);
+    console.log(JSON.stringify(form));
 
-    if (!habitName.trim()) {
-      return;
-    }
-
-    addHabit(habitName, color);
-
-    setHabitName("");
+    addHabit(form);
   };
 
   return (
@@ -28,21 +29,24 @@ const HabitForm = ({ addHabit, closeForm }) => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form id="form" onSubmit={handleSubmit}>
           <label>Habit Name</label>
 
           <input
             type="text"
             placeholder="Example: Read 20 minutes"
-            value={habitName}
-            onChange={(e) => setHabitName(e.target.value)}
+            id="habit"
+            name="name"
+            required
+            onChange={handleOnChange}
           />
 
           <label>Color</label>
           <input
             type="color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
+            name="color"
+            id="color"
+            onChange={handleOnChange}
           />
 
           <div className="modalButtons">

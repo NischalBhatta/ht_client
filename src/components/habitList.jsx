@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { postCompletion } from "../helpers/completionAxiosHelper.js";
 export const HabitList = ({
   activeHabits,
   archivedHabits,

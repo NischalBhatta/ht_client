@@ -5,6 +5,7 @@ import HabitForm from "./components/HabitForm.jsx";
 import HabitHistory from "./components/HabitHistory.jsx";
 
 import React, { useState } from "react";
+import { postHabit } from "./helpers/habitAxiosHelper.js";
 
 const generateDummyCollections = (createdAt) => {
   const completions = [];
@@ -70,16 +71,8 @@ function App() {
     }
   };
 
-  const addHabit = (habitName, color) => {
-    console.log("habitName:", habitName);
-    console.log("color:", color);
-    const newHabit = {
-      _id: Date.now().toString(),
-      name: habitName,
-      color: color,
-      isArchived: false,
-      completed: false,
-    };
+  const addHabit = async (taskObj) => {
+    const newHabit = await postHabit(taskObj);
 
     setHabitList([...habitList, newHabit]);
 
