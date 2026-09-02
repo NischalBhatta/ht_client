@@ -5,7 +5,9 @@ import HabitForm from "./components/HabitForm.jsx";
 import HabitHistory from "./components/HabitHistory.jsx";
 
 import React, { useState } from "react";
-import { postHabit } from "./helpers/habitAxiosHelper.js";
+import { fetchAllHabits, postHabit } from "./helpers/habitAxiosHelper.js";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const generateDummyCollections = (createdAt) => {
   const completions = [];
@@ -24,31 +26,25 @@ const generateDummyCollections = (createdAt) => {
 };
 
 function App() {
-  const [habitList, setHabitList] = useState([
-    {
-      _id: "1",
-      name: "Drink 2L of water",
-      colour: "#718b73",
-      isArchived: false,
-      isCompleted: true,
-      createdAt: "2026-08-01",
-      completions: generateDummyCollections("2026-08-01"),
-    },
-    {
-      _id: "2",
-      name: "Read 20 minutes",
-      colour: "#6b8cae",
-      isArchived: false,
-      isCompleted: false,
-      createdAt: "2026-08-01",
-      completions: generateDummyCollections("2026-08-01"),
-    },
-  ]);
+  const [habitList, setHabitList] = useState([]);
 
   const activeHabits = habitList.filter((habit) => !habit.isArchived);
   const archivedHabits = habitList.filter((habit) => habit.isArchived);
 
   const [showForm, setShowForm] = useState(false);
+
+  const shouldFetchRef = useRef(true);
+
+  useEffect(() => {
+    shouldFetchRef.current && getAllHabit();
+    shouldFetchRef.current = false;
+  }, []);
+
+  const getAllHabit = async () => {
+    const response = await fetchAllHabits();
+    console.log(response);
+    response?.status === "success" && setHabitList(response.data);
+  };
 
   const handleArchiveToggle = (id) => {
     setHabitList((currentList) =>
