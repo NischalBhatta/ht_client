@@ -13,7 +13,7 @@ const HabitForm = ({ addHabit, closeForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    console.log(JSON.stringify(form));
+    // console.log(JSON.stringify(form));
 
     addHabit(form);
   };

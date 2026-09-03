@@ -6,6 +6,7 @@ import HabitHistory from "./components/HabitHistory.jsx";
 
 import React, { useState } from "react";
 import {
+  deleteHabit,
   fetchAllHabits,
   postHabit,
   updateHabit,
@@ -65,18 +66,19 @@ function App() {
     }
   };
 
-  const handleDeleteButton = (id) => {
+  const handleDeleteButton = async (id) => {
     if (window.confirm("Are you sure you want to delete this habit?")) {
-      setHabitList((currentList) =>
-        currentList.filter((habit) => habit._id !== id),
-      );
+      const response = await deleteHabit({ _id: id });
+      console.log("DELETE RESPONSE:", response);
+      response?.status === "success" && getAllHabit();
     }
   };
 
   const addHabit = async (taskObj) => {
     const newHabit = await postHabit(taskObj);
+    console.log(newHabit);
 
-    setHabitList([...habitList, newHabit]);
+    setHabitList([...habitList, newHabit.data]);
 
     setShowForm(false);
   };
