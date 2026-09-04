@@ -33,6 +33,8 @@ const generateDummyCollections = (createdAt) => {
 function App() {
   const [habitList, setHabitList] = useState([]);
 
+  const [completions, setCompletions] = useState([]);
+
   const activeHabits = habitList.filter((habit) => !habit.isArchived);
   const archivedHabits = habitList.filter((habit) => habit.isArchived);
 
